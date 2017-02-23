@@ -7,5 +7,5 @@ directory="$directory/src"
 find $directory -name '*.sh' |
 while read filename
 do
-  $filename
+  source $filename
 done
