@@ -19,6 +19,13 @@ function svnswitch {
 
 # SVN Merge
 # - Repository root is automagically figured out by current working directory.
+# - Expects two arguments. From and to path relative to repositor root. Ie: `svncopy trunk branches/123-foo-bar`
+function svncopy {
+ svn copy $(svnrepo)/$1 $(svnrepo)/$2
+}
+
+# SVN Merge
+# - Repository root is automagically figured out by current working directory.
 # - Expects a single argument. Ie: trunk or branches/123-foo-bar or tags/0.0.1
 function svnmerge {
  svn merge $(svnrepo)/$1
