@@ -4,6 +4,14 @@
 # SVN Helpers
 #
 
+# vim will be the default editor if it exists and $SVN_EDITOR is not yet
+if [ "$SVN_EDITOR" == "" ]; then
+  command -v vim 2>&1 > /dev/null
+  if [ "$?" == "0" ]; then
+    export SVN_EDITOR="vim"
+  fi
+fi
+
 # SVN Repo
 # - Returns repo name of current working directory project
 function svnrepo() {
