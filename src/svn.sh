@@ -18,6 +18,13 @@ function svnrepo() {
  svn info | grep 'Repository Root' | awk '{print $NF}'
 }
 
+# SVN Delete
+# - Repository root is automagically figured out by current working directory.
+# - Expects a single argument. Ie: branches/123-foo-bar
+function svndelete {
+ svn delete $(svnrepo)/$1
+}
+
 # SVN Switch
 # - Repository root is automagically figured out by current working directory.
 # - Expects a single argument. Ie: trunk or branches/123-foo-bar or tags/0.0.1
