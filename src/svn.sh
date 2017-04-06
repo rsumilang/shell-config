@@ -33,12 +33,10 @@ function svnswitch {
 }
 
 # SVN Copy
-# - Repository root is automagically figured out by current working directory. Svn switch will be applied automatically
-#   to new path.
+# - Repository root is automagically figured out by current working directory.
 # - Expects two arguments. From and to path relative to repositor root. Ie: `svncopy trunk branches/123-foo-bar`
 function svncopy {
  svn copy $(svnrepo)/$1 $(svnrepo)/$2
- svnswitch $2
 }
 
 # SVN Merge
@@ -49,9 +47,10 @@ function svnmerge {
 }
 
 # SVN Branch
-# - Creates a branch/tag from trunk
-# - Expects branch name. Ie: 123-ticket
+# - Creates a branch/tag from trunk. Svn switch will be called automatically to the new path.
+# - Expects branch name. Ie: branches/123-ticket
 function svnbranch {
- svn copy $(svnrepo)/trunk $(svnrepo)/branches/$1
+ svn copy $(svnrepo)/trunk $(svnrepo)/$1
+ svnswitch $1
 }
 
